@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 
-const secretId = 'rakeshraj-021'
+const secretId = process.env.JWT_SECRET_ID;
 
 function generateTokenAndSetCookie(res, user) {
     const payload = {
