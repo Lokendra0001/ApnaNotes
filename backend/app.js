@@ -19,10 +19,19 @@ mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDb connected Successfully!"))
     .catch((err) => console.log(err))
 
+const allowedOrigins = ['http://localhost:5173', 'https://apnanotes-cdn4.onrender.com'];
+
 app.use(cors({
-    origin: 'http://localhost:5173',  // ✅ Your frontend port
-    credentials: true                // ✅ To allow cookies
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
 }));
+
 app.use(cookieParser())
 app.use(express.json())
 
