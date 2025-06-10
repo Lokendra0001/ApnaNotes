@@ -5,6 +5,24 @@ import { useState } from "react";
 
 const Nav = () => {
   const user = useSelector((state) => state.auth?.user?.payload);
+  //   const [user, setUser] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const res = await fetch("https://apnanotes-cdn4.onrender.com/user/profile", {
+  //         credentials: "include",
+  //       });
+  //       const data = await res.json();
+  //       setUser(data.user);
+  //     } catch (err) {
+  //       console.error("Failed to load user:", err);
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, []);
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [

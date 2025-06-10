@@ -34,7 +34,13 @@ const handleSignIn = async (req, res) => {
 
 
 const handleLogout = async (req, res) => {
-    res.clearCookie('token')
+    const token = req.cookies.token;
+    res.clearCookie('token', token, {
+        httpOnly: true,
+        secure: true,         // Needed for HTTPS in production (like Render)
+        sameSite: "None",     // Required for cross-origin cookies
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    })
 
     return res.status(201).json({ message: "LogOut Successfully!" });
 };

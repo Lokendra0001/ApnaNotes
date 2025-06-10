@@ -13,7 +13,6 @@ const { checkAuthentication } = require("./middleware/auth.js");
 const app = express();
 const port = process.env.PORT || 8000;
 
-console.log(process.env.API_KEY)
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDb connected Successfully!"))

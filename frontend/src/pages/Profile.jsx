@@ -106,7 +106,7 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       await fetch("https://apnanotes-cdn4.onrender.com/user/logout", {
-        method: "GET",
+        method: "DELETE",
         credentials: "include",
       })
         .then((res) => res.json())

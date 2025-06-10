@@ -19,7 +19,7 @@ router.post("/signup", upload.single("profileImg"), handleSignUp);
 
 router.post("/login", handleSignIn);
 
-router.get("/logout", handleLogout);
+router.delete("/logout", handleLogout);
 
 router.get("/profile", checkAuthentication, handleGetProfile);
 
