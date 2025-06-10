@@ -27,7 +27,7 @@ const handleUpdateEditNote = async (req, res) => {
 const handleDeleteNote = async (req, res) => {
     const id = req.body.id;
     const note = await Note.findOneAndDelete({ _id: id });
-    note ? res.json("Note Deleted Successfully!") : res.json("Note not Deleted!")
+    note ? res.json({ msg: "Note Deleted Successfully!", id: id }) : res.json("Note not Deleted!")
 };
 
 module.exports = {

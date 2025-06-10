@@ -23,7 +23,8 @@ const Home = () => {
         throw new Error("Failed to fetch notes");
       }
       const data = await response.json();
-      setNotes(data);
+      console.log(data);
+      setNotes(data.msg);
     } catch (err) {
       setError(err.message);
     } finally {
