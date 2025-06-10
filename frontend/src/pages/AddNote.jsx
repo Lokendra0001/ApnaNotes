@@ -26,7 +26,7 @@ const AddNote = () => {
       setFetchError(null);
 
       try {
-        const response = await fetch(`http://localhost:3000/editNote/${id}`, {
+        const response = await fetch(`https://apnanotes-cdn4.onrender.com/editNote/${id}`, {
           credentials: "include",
         });
         if (!response.ok) {
@@ -56,8 +56,8 @@ const AddNote = () => {
 
     try {
       const url = id
-        ? `http://localhost:3000/editNote/${id}`
-        : "http://localhost:3000/addNote";
+        ? `https://apnanotes-cdn4.onrender.com/editNote/${id}`
+        : "https://apnanotes-cdn4.onrender.com/addNote";
       const method = id ? "PATCH" : "POST";
 
       const response = await fetch(url, {

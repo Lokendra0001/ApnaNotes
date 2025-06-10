@@ -24,7 +24,7 @@ const Signup = () => {
     formData.append("password", data.password);
     formData.append("profileImg", data.profileImg[0]); // important: first file
 
-    fetch("http://localhost:3000/user/signup", {
+    fetch("https://apnanotes-cdn4.onrender.com/user/signup", {
       method: "POST",
       body: formData,
     })

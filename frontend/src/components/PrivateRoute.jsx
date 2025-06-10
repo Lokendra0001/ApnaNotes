@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://localhost:3000/check-auth", {
+    fetch("https://apnanotes-cdn4.onrender.com/check-auth", {
       method: "GET",
       credentials: "include", // 🧠 required to send cookie
     })

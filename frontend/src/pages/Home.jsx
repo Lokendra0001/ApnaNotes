@@ -16,7 +16,7 @@ const Home = () => {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch("http://localhost:3000", {
+      const response = await fetch("https://apnanotes-cdn4.onrender.com", {
         credentials: "include",
       });
       if (!response.ok) {
@@ -37,7 +37,7 @@ const Home = () => {
 
   const removeNoteHandler = (id) => {
     setIsDeleted(true);
-    fetch("http://localhost:3000", {
+    fetch("https://apnanotes-cdn4.onrender.com", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),

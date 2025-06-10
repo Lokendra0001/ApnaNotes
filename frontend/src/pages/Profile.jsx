@@ -30,7 +30,7 @@ const Profile = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch("http://localhost:3000/user/profile", {
+      const response = await fetch("https://apnanotes-cdn4.onrender.com/user/profile", {
         method: "GET",
         credentials: "include",
       });
@@ -56,7 +56,7 @@ const Profile = () => {
 
   const handleFormSubmit = async (data) => {
     try {
-      const res = await fetch("http://localhost:3000/user/editProfile", {
+      const res = await fetch("https://apnanotes-cdn4.onrender.com/user/editProfile", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -80,7 +80,7 @@ const Profile = () => {
     const formData = new FormData();
     formData.append("profileImg", data.profileImg[0]);
     formData.append("user_id", user._id);
-    await fetch("http://localhost:3000/user/changeAvator", {
+    await fetch("https://apnanotes-cdn4.onrender.com/user/changeAvator", {
       method: "POST",
       credentials: "include",
       body: formData,
@@ -97,7 +97,7 @@ const Profile = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:3000/user/logout", {
+      await fetch("https://apnanotes-cdn4.onrender.com/user/logout", {
         method: "GET",
         credentials: "include",
       })
