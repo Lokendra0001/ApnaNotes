@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Delete } from "../components/index";
-import Alert from "@mui/material/Alert";
-import Slide from "@mui/material/Slide";
 import { FaPlus } from "react-icons/fa";
-import { handleFailure } from "../utils/toast";
+import { handleFailure, handleSuccess } from "../utils/toast";
 
 const Home = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [showModal, setShowModal] = useState({ visible: false, id: null });
   const navigate = useNavigate();
 
   const fetchNotes = async () => {
@@ -36,7 +33,6 @@ const Home = () => {
   }, []);
 
   const removeNoteHandler = (id) => {
-    setIsDeleted(true);
     fetch("https://apnanotes-cdn4.onrender.com/deleteNote", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -44,15 +40,12 @@ const Home = () => {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        fetchNotes();
+      .then(async (data) => {
+        await fetchNotes();
+        handleSuccess(data.msg);
       })
       .catch((err) => handleFailure(err));
-    setShowModal(false);
-    setTimeout(() => {
-      setIsDeleted(false);
-    }, 2000);
+    setShowModal({ visible: false, id: null });
 
     return;
   };
@@ -130,14 +123,18 @@ const Home = () => {
                 </button>
                 <button
                   className="text-gray-400 hover:text-red-400 transition-colors"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => {
+                    setShowModal({ visible: true, id: note._id });
+                  }}
                 >
                   Delete
                 </button>
                 <Delete
-                  visible={showModal}
-                  onClose={() => setShowModal(false)}
-                  onConfirm={() => removeNoteHandler(note._id)}
+                  visible={showModal.visible}
+                  onClose={() => setShowModal({ visible: false })}
+                  onConfirm={() => {
+                    removeNoteHandler(showModal.id);
+                  }}
                 />
               </div>
             </div>
@@ -158,18 +155,6 @@ const Home = () => {
             <span className="absolute left-1/2 -bottom-1 translate-x-[-50%] w-2 h-2 bg-purple-600 rotate-45"></span>
           </span>
         </button>
-      )}
-
-      {isDeleted && (
-        <Slide direction="right" in={isDeleted} mountOnEnter unmountOnExit>
-          <Alert
-            className="fixed bottom-2.5 left-5"
-            severity="success"
-            onClose={() => setIsDeleted(false)}
-          >
-            Note Deleted Successfully.
-          </Alert>
-        </Slide>
       )}
     </div>
   );
