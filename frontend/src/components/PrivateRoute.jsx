@@ -33,7 +33,12 @@ const PrivateRoute = ({ children }) => {
       });
   }, []);
 
-  if (auth === null) return <RingLoader color="#ac74ff" />;
+  if (auth === null)
+    return (
+      <div className="flex items-center justify-center h-[88dvh]">
+        <RingLoader color="#ac74ff" />
+      </div>
+    );
   if (!auth) return <Navigate to="/user/login" replace />;
 
   return children;
