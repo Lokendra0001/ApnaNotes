@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { addUser, removeUser } from "../store/features/authSlice";
 import { handleFailure } from "../utils/toast";
-import { RingLoader } from "react-spinners";
 
 const PrivateRoute = ({ children }) => {
   const [auth, setAuth] = useState(null);
@@ -35,8 +34,10 @@ const PrivateRoute = ({ children }) => {
 
   if (auth === null)
     return (
-      <div className="flex items-center justify-center h-[88dvh]">
-        <RingLoader color="#ac74ff" />
+      <div className="flex items-center justify-center h-[88dvh] text-xl font-semibold text-purple-600">
+        <span className="relative after:content-['.'] after:absolute after:animate-[dot_1s_steps(4)_infinite]">
+          Loading
+        </span>
       </div>
     );
   if (!auth) return <Navigate to="/user/login" replace />;

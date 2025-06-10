@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDb connected Successfully!"))
     .catch((err) => console.log(err))
 
-const allowedOrigins = ['http://localhost:5173', 'https://apnanotes-1.onrender.com', 'https://apnanotes.vercel.app/'];
+const allowedOrigins = ['http://localhost:5173', 'https://apnanotes-1.onrender.com', 'https://apnanotes.vercel.app'];
 
 app.use(cors({
     origin: function (origin, callback) {
