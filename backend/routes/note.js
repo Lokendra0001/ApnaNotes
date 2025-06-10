@@ -5,7 +5,8 @@ const router = express.Router();
 
 
 
-router.route('/').get(handleGetAllNotes).delete(handleDeleteNote);
+router.get('/', handleGetAllNotes)
+router.delete("/deleteNote", handleDeleteNote);
 
 router.post('/addnote', handleAddNote)
 

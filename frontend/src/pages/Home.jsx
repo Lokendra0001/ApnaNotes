@@ -23,8 +23,7 @@ const Home = () => {
         throw new Error("Failed to fetch notes");
       }
       const data = await response.json();
-      console.log(data);
-      setNotes(data.msg);
+      setNotes(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -38,7 +37,7 @@ const Home = () => {
 
   const removeNoteHandler = (id) => {
     setIsDeleted(true);
-    fetch("https://apnanotes-cdn4.onrender.com", {
+    fetch("https://apnanotes-cdn4.onrender.com/deleteNote", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
@@ -46,6 +45,7 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         fetchNotes();
       })
       .catch((err) => handleFailure(err));
