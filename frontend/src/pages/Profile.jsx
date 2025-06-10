@@ -151,7 +151,7 @@ const Profile = () => {
                     : user?.profileImg
                 }
                 alt="Avator"
-                className="w-full h-full object-cover text-white text-2xl text-center"
+                className="w-full h-full object-cover text-white  text-center"
               />
             </div>
             <button className="absolute bottom-2  right-2 bg-gray-600 p-2 rounded-full hover:bg-purple-700 transition ">
@@ -160,6 +160,7 @@ const Profile = () => {
                 {...register("profileImg", {
                   onChange: () => setIsAvator(true),
                 })}
+                accept="image/*"
                 title="Select New Avator"
                 className="absolute top-0 left-0 w-full h-full opacity-0 "
               />

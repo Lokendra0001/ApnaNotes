@@ -34,8 +34,8 @@ const PrivateRoute = ({ children }) => {
 
   if (auth === null)
     return (
-      <div className="flex items-center justify-center h-[88dvh] text-xl font-semibold text-purple-600">
-        <span className="relative after:content-['.'] after:absolute after:animate-[dot_1s_steps(4)_infinite]">
+      <div className="flex items-center justify-center h-[88dvh]">
+        <span className="text-xl font-semibold text-white relative after:content-['...'] after:absolute after:left-full after:animate-pulse">
           Loading
         </span>
       </div>
