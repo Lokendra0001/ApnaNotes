@@ -36,7 +36,7 @@ const PrivateRoute = ({ children }) => {
     return (
       <div className="flex items-center justify-center h-[88dvh]">
         <span className="text-xl font-semibold text-white relative after:content-['...'] after:absolute after:left-full after:animate-pulse">
-          Loading
+          Server SetUp Please Wait.
         </span>
       </div>
     );
