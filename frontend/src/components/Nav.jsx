@@ -100,7 +100,7 @@ const Nav = () => {
                     link?.profileImg ? (
                       <>
                         <img
-                          src={`https://apnanotes-cdn4.onrender.com${link.profileImg}`}
+                          src={link.profileImg}
                           className="w-7 h-7 rounded-full"
                           alt="Profile"
                         />
