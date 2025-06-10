@@ -30,10 +30,13 @@ const Profile = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch("https://apnanotes-cdn4.onrender.com/user/profile", {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://apnanotes-cdn4.onrender.com/user/profile",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       const data = await response.json();
       if (!response.ok) {
         console.log("User Error");
@@ -46,7 +49,7 @@ const Profile = () => {
       setValue("email", data.user.email);
       setValue("bio", data.user.bio);
     } catch (error) {
-      handleFailure(error)
+      handleFailure(error);
     }
   };
 
@@ -55,13 +58,17 @@ const Profile = () => {
   }, []);
 
   const handleFormSubmit = async (data) => {
+    setLoader(true);
     try {
-      const res = await fetch("https://apnanotes-cdn4.onrender.com/user/editProfile", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        "https://apnanotes-cdn4.onrender.com/user/editProfile",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!res.ok) {
         console.log("Res error");
@@ -73,6 +80,7 @@ const Profile = () => {
     } catch (error) {
       handleFailure(error);
     }
+    setLoader(false);
   };
 
   const changeAvator = async (data) => {
@@ -142,8 +150,8 @@ const Profile = () => {
                     ? URL.createObjectURL(profileImgFile[0])
                     : user?.profileImg
                 }
-                alt="user"
-                className="w-full h-full object-cover"
+                alt="Avator"
+                className="w-full h-full object-cover text-white text-2xl text-center"
               />
             </div>
             <button className="absolute bottom-2  right-2 bg-gray-600 p-2 rounded-full hover:bg-purple-700 transition ">
@@ -259,7 +267,7 @@ const Profile = () => {
                     type="submit"
                     className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition"
                   >
-                    Save Changes
+                    {loader ? "Saving..." : "Save Changes"}
                   </button>
                 </>
               )}

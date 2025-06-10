@@ -57,7 +57,7 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[88dvh]">
         <div className="text-white text-xl">Loading notes...</div>
       </div>
     );

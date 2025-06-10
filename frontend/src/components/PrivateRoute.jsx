@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { addUser, removeUser } from "../store/features/authSlice";
 import { handleFailure } from "../utils/toast";
+import { Triangle } from "react-loader-spinner";
 
 const PrivateRoute = ({ children }) => {
   const [auth, setAuth] = useState(null);
@@ -32,7 +33,20 @@ const PrivateRoute = ({ children }) => {
       });
   }, []);
 
-  if (auth === null) return <p>Loading...</p>;
+  if (auth === null)
+    return (
+      <div className="flex items-center justify-center h-[88dvh]">
+        <Triangle
+          visible={true}
+          height="80"
+          width="80"
+          color="#AC74FF"
+          ariaLabel="triangle-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
   if (!auth) return <Navigate to="/user/login" replace />;
 
   return children;
