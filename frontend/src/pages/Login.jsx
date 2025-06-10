@@ -8,17 +8,22 @@ import { handleSuccess } from "../utils/toast.js";
 const Login = () => {
   const { register, handleSubmit, setValue } = useForm();
   const [msg, setMsg] = useState("");
+  const [loader, setLoader] = useState(false);
   const [alerType, setAlertType] = useState("");
   const navigate = useNavigate();
 
   const loginHandler = async (data) => {
+    setLoader(true);
     try {
-      const response = await fetch("https://apnanotes-cdn4.onrender.com/user/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://apnanotes-cdn4.onrender.com/user/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
 
       const resData = await response.json();
 
@@ -31,6 +36,7 @@ const Login = () => {
         handleSuccess(resData.message);
         setTimeout(() => navigate("/"), 1000);
       }
+      setLoader(false);
     } catch (error) {
       setMsg("Something went wrong. Please try again.");
       setAlertType("error");
@@ -102,7 +108,7 @@ const Login = () => {
             type="submit"
             className="bg-blue-600 hover:bg-blue-700 cursor-pointer  text-white font-semibold py-3 rounded-md flex items-center justify-center gap-2 transition duration-200"
           >
-            <FaSignInAlt /> Sign In
+            <FaSignInAlt /> {loader ? "Signing..." : "Sign In"}
           </button>
         </form>
         <p className="text-white">

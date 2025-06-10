@@ -35,7 +35,7 @@ const Signup = () => {
         setLoader(false);
         navigate("/user/login");
       })
-      .catch((err) => handleFailure(error));
+      .catch((err) => handleFailure(err));
   };
 
   return (
